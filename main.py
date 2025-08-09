@@ -1,16 +1,17 @@
 # app.py
 import json
 import streamlit as st
-from recommend import df, recommend_movies
-from omdb_utils import get_movie_details
 import base64
 import os
+import subprocess
 
 if not os.path.exists('df_cleaned.pkl'):
     st.info("Preparing recommendation system... This may take a moment.")
     import subprocess
     subprocess.run(['python', 'preprocess.py'])
 
+from recommend import df, recommend_movies
+from omdb_utils import get_movie_details
 
 # Get API key from environment variable (for deployment) or config file (for local)
 OMDB_API_KEY = os.getenv('OMDB_API_KEY')
@@ -109,5 +110,6 @@ st.markdown("""
     <p>🎬 Created by <strong>Sankaran S</strong> 🎬</p>
 </div>
 """, unsafe_allow_html=True)
+
 
 

@@ -5,11 +5,24 @@ import base64
 import os
 import subprocess
 
+# Check and generate model files FIRST (before any imports that need them)
 if not os.path.exists('df_cleaned.pkl'):
-    st.info("Preparing recommendation system... This may take a moment.")
-    import subprocess
-    subprocess.run(['python', 'preprocess.py'])
+    st.info("🚀 Preparing recommendation system for first use... This may take 2-3 minutes.")
+    st.info("Please wait while we process the movie database...")
+    
+    try:
+        # Run preprocessing
+        result = subprocess.run(['python', 'preprocess.py'], capture_output=True, text=True)
+        if result.returncode != 0:
+            st.error(f"Preprocessing failed: {result.stderr}")
+            st.stop()
+        else:
+            st.success("✅ Recommendation system ready!")
+    except Exception as e:
+        st.error(f"Error during preprocessing: {str(e)}")
+        st.stop()
 
+# NOW it's safe to import from recommend.py
 from recommend import df, recommend_movies
 from omdb_utils import get_movie_details
 
@@ -110,6 +123,7 @@ st.markdown("""
     <p>🎬 Created by <strong>Sankaran S</strong> 🎬</p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 

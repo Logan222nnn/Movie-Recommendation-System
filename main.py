@@ -12,8 +12,16 @@ if not os.path.exists('df_cleaned.pkl'):
     subprocess.run(['python', 'preprocess.py'])
 
 
-config = json.load(open("config.json"))
-OMDB_API_KEY = config["OMDB_API_KEY"]
+# Get API key from environment variable (for deployment) or config file (for local)
+OMDB_API_KEY = os.getenv('OMDB_API_KEY')
+
+if not OMDB_API_KEY:
+    try:
+        config = json.load(open("config.json"))
+        OMDB_API_KEY = config["OMDB_API_KEY"]
+    except FileNotFoundError:
+        st.error("❌ OMDB API key not found! Please set OMDB_API_KEY environment variable.")
+        st.stop()
 
 # background function
 def set_background_image(image_file):
@@ -101,4 +109,5 @@ st.markdown("""
     <p>🎬 Created by <strong>Sankaran S</strong> 🎬</p>
 </div>
 """, unsafe_allow_html=True)
+
 

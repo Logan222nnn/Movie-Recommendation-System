@@ -3,26 +3,8 @@ import json
 import streamlit as st
 import base64
 import os
-import subprocess
 
-# Check and generate model files FIRST (before any imports that need them)
-if not os.path.exists('df_cleaned.pkl'):
-    st.info("🚀 Preparing recommendation system for first use... This may take 2-3 minutes.")
-    st.info("Please wait while we process the movie database...")
-    
-    try:
-        # Run preprocessing
-        result = subprocess.run(['python', 'preprocess.py'], capture_output=True, text=True)
-        if result.returncode != 0:
-            st.error(f"Preprocessing failed: {result.stderr}")
-            st.stop()
-        else:
-            st.success("✅ Recommendation system ready!")
-    except Exception as e:
-        st.error(f"Error during preprocessing: {str(e)}")
-        st.stop()
-
-# NOW it's safe to import from recommend.py
+# Direct import (models will be downloaded automatically from Hugging Face)
 from recommend import df, recommend_movies
 from omdb_utils import get_movie_details
 
@@ -37,28 +19,22 @@ if not OMDB_API_KEY:
         st.error("❌ OMDB API key not found! Please set OMDB_API_KEY environment variable.")
         st.stop()
 
-# background function
+# Background function
 def set_background_image(image_file):
-    import base64
-    
-    # Read and encode the image
-    with open(image_file, "rb") as f:
-        img_data = f.read()
-    img_base64 = base64.b64encode(img_data).decode()
-    
-    # CSS styling
-    st.markdown(f"""
-    <style>
-    .stApp {{
-        background-image: url("data:image/jpg;base64,{img_base64}");
-        background-size: cover;
-        background-position: center;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
+    if os.path.exists(image_file):
+        img_data = base64.b64encode(open(image_file, "rb").read()).decode()
+        st.markdown(f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{img_data}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
 
+# Set background (with error handling)
 set_background_image('background_image.jpg')
-
 
 st.set_page_config(
     page_title="Movie Recommendation System",
@@ -68,7 +44,7 @@ st.set_page_config(
 
 st.title("🎬 Movie Recommendation System")
 
-# Using 'title' instead of 'song' now
+# Movie selection
 movie_list = sorted(df['title'].dropna().unique())
 selected_movie = st.selectbox("🎬 Select a movie:", movie_list)
 
@@ -111,19 +87,15 @@ if st.button("🚀 Recommend Similar Movies"):
                         if actors != "N/A":
                             st.markdown(f"**Actors:** {actors}")
                         
-                        if awards != "N/A" and awards != "N/A":
+                        if awards != "N/A":
                             st.markdown(f"**Awards:** 🏆 {awards}")
                         
                         st.markdown("---")
 
-# Add creator credit at the bottom
+# Creator credit
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: white; font-style: italic; margin-top: 50px;'>
     <p>🎬 Created by <strong>Sankaran S</strong> 🎬</p>
 </div>
 """, unsafe_allow_html=True)
-
-
-
-

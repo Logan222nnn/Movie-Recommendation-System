@@ -4,6 +4,13 @@ import streamlit as st
 from recommend import df, recommend_movies
 from omdb_utils import get_movie_details
 import base64
+import os
+
+if not os.path.exists('df_cleaned.pkl'):
+    st.info("Preparing recommendation system... This may take a moment.")
+    import subprocess
+    subprocess.run(['python', 'preprocess.py'])
+
 
 config = json.load(open("config.json"))
 OMDB_API_KEY = config["OMDB_API_KEY"]
@@ -94,3 +101,4 @@ st.markdown("""
     <p>🎬 Created by <strong>Sankaran S</strong> 🎬</p>
 </div>
 """, unsafe_allow_html=True)
+

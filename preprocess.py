@@ -1,13 +1,10 @@
 # preprocess.py
 import pandas as pd
 import re
-import nltk
 import joblib
 import logging
-from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
 
 # Setup logging
 logging.basicConfig(
@@ -21,8 +18,6 @@ logging.basicConfig(
 
 logging.info("🚀 Starting preprocessing...")
 
-nltk.download('punkt')
-
 # Load and sample dataset
 try:
     df = pd.read_csv("original_movies_data.csv")
@@ -32,25 +27,22 @@ except Exception as e:
     raise e
 
 def preprocess_text(text):
+    """Simple text preprocessing without NLTK"""
     text = re.sub(r"[^a-zA-Z\s]", "", str(text))
     text = text.lower()
-    tokens = word_tokenize(text)
+    tokens = text.split()  # Simple split instead of NLTK or spacy
     return " ".join(tokens)
 
-
-# filter the required columns for recommendation
+# Filter the required columns for recommendation
 required_columns = ["genres", "keywords", "overview", "title", "tagline"]
 
 df = df[required_columns]
-
 df = df.fillna('')
-
 df['combined'] = df['genres'] + ' ' + df['keywords'] + ' ' + df['overview'] + ' ' + df['tagline']
 
 logging.info("🧹 Cleaning text...")
 df['cleaned_text'] = df['combined'].apply(preprocess_text)
 logging.info("Text cleaned.")
-
 
 # Vectorization
 logging.info("🔠 Vectorizing using TF-IDF...")

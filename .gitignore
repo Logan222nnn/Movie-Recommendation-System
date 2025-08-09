@@ -1,0 +1,43 @@
+# API Keys and Configuration
+config.json
+
+# Python Generated Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyc
+
+# Machine Learning Models & Processed Data
+*.pkl
+*.joblib
+df_cleaned.pkl
+tfidf_matrix.pkl
+cosine_sim.pkl
+
+# Log Files
+*.log
+preprocess.log
+recommend.log
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp

